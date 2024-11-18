@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="effects.js">
+        
+    <title>Document</title>
+</head>
+<body>
+    <div class="wrapper">
+        <header>
+            <div class="wrapper">
+                <a href="#" class="logo">James</a>
+                <nav class="desktop-nav">
+                    <a href="#about">About</a>
+                    <a href="#portfolio">Portfolio</a>
+                    <a href="contacts">Contacts</a>
+                </nav>
+            </div>
+        </header>
+        
+
+        <section class="home">
+            <div class="home-content">
+                <h1>Hello there! I'm <span class="span-main">James Jimenez</span></h1>
+                <p>I’m a senior high school student based in the Philippines. I have profound interest in <span class="typing-text"></span>, and I’m always looking to learn new things.</p>
+            </div>
+            <div class="home-img">
+                <img src="ma.jpg" alt="James Image">
+            </div>
+            <div>
+            <button class="scroll-down" onclick="scrollToPortfolio()">
+                <span class="button-text">Portfolio</span>
+                <i class="arrow-down"></i>
+            </button>
+            </div>
+        </section>
+
+        <section class="portfolio">
+            <div class="portfolio-content">
+                <h2> :) </h2>
+                <h1>Empty Canvas for Now, Masterpieces to Come</h1>
+                <p>This space may look blank, but imagine it as a canvas waiting for creativity. Upcoming projects will turn this into a gallery of ideas.</p>
+            </div>
+        </section>
+    </div>
+</body>
+
+</html>
+
+<script>
+    function scrollToPortfolio() {
+    const portfolioSection = document.querySelector('.portfolio');
+    portfolioSection.scrollIntoView({ behavior: 'smooth' });
+}
+</script>
+
+<script>
+    const typingText = document.querySelector('.typing-text');
+const words = ["software development", "web development", "graphic designing", "web designing", "cybersecurity"];
+let wordIndex = 0;
+let charIndex = 0;
+let isDeleting = false;
+
+function typeEffect() {
+    const currentWord = words[wordIndex];
+    let displayedText;
+
+    if (isDeleting) {
+        displayedText = currentWord.substring(0, charIndex--);
+    } else {
+        displayedText = currentWord.substring(0, charIndex++);
+    }
+
+    typingText.textContent = displayedText;
+
+    if (!isDeleting && charIndex === currentWord.length) {
+        setTimeout(() => (isDeleting = true), 1500); // Pause before deleting
+    }
+
+    if (isDeleting && charIndex === 0) {
+        isDeleting = false;
+        wordIndex = (wordIndex + 1) % words.length; // Loop through words
+    }
+
+    const typingSpeed = isDeleting ? 50 : 100; // Faster when deleting
+    setTimeout(typeEffect, typingSpeed);
+}
+
+// Start typing effect after the DOM is fully loaded
+document.addEventListener("DOMContentLoaded", typeEffect);
+
+</script>
